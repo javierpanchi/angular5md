@@ -1,0 +1,26 @@
+<p>
+  <mat-card class="card-style">
+    <mat-card-header>
+      <mat-card-title>Authetication</mat-card-title>
+      <mat-card-subtitle>Please, enter your email and password</mat-card-subtitle>
+    </mat-card-header>
+    <div align="center">
+
+    </div>
+    <mat-card-content>
+      <div align="center">
+        <mat-form-field>
+          <input matInput placeholder="email" #username>
+        </mat-form-field><br/>
+        <mat-form-field>
+          <input matInput placeholder="password" type="password" #password>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div align="center">
+        <button mat-button (click)='auth.login(username.value,password.value)'><mat-icon>check</mat-icon>Done</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</p>

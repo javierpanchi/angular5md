@@ -1,0 +1,8 @@
+<mat-tab-group (selectChange)="updateTab()">
+  <mat-tab label="Search User">
+    <app-search></app-search>
+  </mat-tab>
+  <mat-tab label="Favorites">
+      <app-favorite [favorites]=favoritesFromLocalStorage></app-favorite>
+  </mat-tab>
+</mat-tab-group>

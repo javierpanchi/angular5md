@@ -1,0 +1,11 @@
+<mat-nav-list>
+      <mat-list-item *ngFor="let favorite of favorites; let i=index;">
+        <span mat-line>{{favorite.name}}</span>
+        <a href="{{favorite.url}}" target="_blank">
+          <mat-icon>open_in_new</mat-icon>
+        </a>
+        <button mat-icon-button [appConfirm]="deleteFavoriteRecord.bind(this,i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>

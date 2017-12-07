@@ -1,0 +1,33 @@
+<div *ngIf="showSearchBox else filterTemplate">
+      <mat-input-container>
+        <input matInput type="text" placeholder="Username" [(ngModel)]="username">
+      </mat-input-container>
+      <button mat-icon-button (click)="showContents()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+    <ng-template #filterTemplate>
+    <div>
+      <mat-select type="string" placeholder="Field" [(ngModel)]="selectedField">
+        <mat-option *ngFor="let option of fieldOptions" [value]="option">{{option.name}}</mat-option>
+      </mat-select>
+      <mat-select type="string" placeholder="Order by" [(ngModel)]="selectedOrder">
+        <mat-option *ngFor="let option of orderOptions" [value]="option">{{option.name}}</mat-option>
+      </mat-select>
+      <button mat-button (click)="resetAll()">
+        Search Again
+      </button>
+    </div>
+    </ng-template>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let repo of repoContents | orderBy:selectedField:selectedOrder">
+        <span mat-line>{{repo.name|uppercase}}</span>
+        <span>{{repo.pushed_at| date:'dd/MM/yyyy'}}</span>
+        <button mat-icon-button (click)="showDialogData(repo)">
+          <mat-icon>info</mat-icon>
+        </button>
+        <button mat-icon-button (click)="addToFavorites(repo)">
+          <mat-icon>favorite</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>  
