@@ -19,7 +19,11 @@
       </button>
     </div>
     </ng-template>
-    <mat-nav-list>
+
+
+
+
+    <!--mat-nav-list>
       <mat-list-item *ngFor="let repo of repoContents | orderBy:selectedField:selectedOrder">
         <span mat-line>{{repo.name|uppercase}}</span>
         <span>{{repo.pushed_at| date:'dd/MM/yyyy'}}</span>
@@ -30,4 +34,35 @@
           <mat-icon>favorite</mat-icon>
         </button>
       </mat-list-item>
-    </mat-nav-list>  
+    </mat-nav-list-->
+
+
+
+    <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+
+
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef> date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.pushed_at}} </mat-cell>
+      </ng-container>
+
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+  </div>
