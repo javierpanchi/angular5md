@@ -15,10 +15,12 @@ import {ViewChild} from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 displayedColumns = ['name', 'pushed_at','actionsColumn'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  repositoryData: Repository[] = [];
+  dataSource = new MatTableDataSource(this.repositoryData);
   username:String;
   repoContents:Array<Object>=[];
   showSearchBox:Boolean;
+
 
   constructor(private myService:GithubService, private snackBar:MatSnackBar,
   private dialog:MatDialog, private localStorageService:LocalstorageService) {
@@ -43,7 +45,7 @@ displayedColumns = ['name', 'pushed_at','actionsColumn'];
   showContents(){
     this.repoContents=[];
     this.myService.getRepositories(this.username).subscribe(posts=>{
-      this.dataSource=new MatTableDataSource<Element>(posts);
+      this.dataSource=new MatTableDataSource<Repository>(posts);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.showSearchBox=false;
@@ -75,12 +77,12 @@ displayedColumns = ['name', 'pushed_at','actionsColumn'];
 
 }
 
-export interface Element {
+export interface Repository {
   name: string;
   pushed_at: Date;
 
 }
-const ELEMENT_DATA: Element[] = [];
+//const ELEMENT_DATA: Element[] = [];
 /*const ELEMENT_DATA: Element[] = [
   {name: 'Hydrogen', pushed_at:new Date("12/12/2000")},
   {name: 'Helium', pushed_at:new Date("12/12/2003")},
