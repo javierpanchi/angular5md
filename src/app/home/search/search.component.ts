@@ -55,8 +55,12 @@ displayedColumns = ['name', 'pushed_at','actionsColumn'];
   }
   showDialogData(repo){
     let dialogRef:MatDialogRef<CommonDialogComponent>;
-    dialogRef=this.dialog.open(CommonDialogComponent);
-    dialogRef.componentInstance.htmlUrl=repo.html_url;
+    dialogRef=this.dialog.open(CommonDialogComponent,{
+  height: '400px',
+  width: '600px',
+});
+    dialogRef.componentInstance.repo=repo;
+
   }
 
   resetAll(){
