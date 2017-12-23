@@ -1,3 +1,7 @@
-<p>
-  common-dialog works!
-</p>
+<mat-list>
+ <mat-list-item>Properties:<mat-select type="string" placeholder="Field" [(ngModel)]="selectedField">
+         <mat-option *ngFor="let option of fieldOptions" [value]="option">{{option.name}}</mat-option>
+ </mat-select>
+ </mat-list-item>
+ <mat-list-item> The value associated with {{selectedField.name}} is: {{repo[selectedField.value]|json|slice:0:150}}</mat-list-item>
+</mat-list>
